@@ -1,0 +1,23 @@
+read.loan <- function(path='C:/Users/Usuario/Documents/cursos/Data Analysis/AnalyticsEdge/Unit 3'){
+  # Read the csv
+  filePath <- file.path(path,'loans.csv')
+  read.csv(filePath,header = T, stringsAsFactors = F)
+}
+loan <- read.loan(path='C:/Users/Usuario/Documents/cursos/Data Analysis/AnalyticsEdge/Unit 3')
+str(loan)
+out
+out <- loan[,c("dti","fico")]
+str(out)
+library(dplyr)
+dir <- "C:/Users/Usuario/Documents/cursos/Data Analysis"
+file <- "clinical_trial.csv"
+path <- file.path(dir,file)
+frame <- read.csv(path,header = T,stringsAsFactors = F)
+frame1 <- filter(frame,trial==1)
+frame2 <- select(frame,title,abstract)
+frame3 <- mutate(frame,suma=trial+trial)
+frame4 <- group_by(frame,trial)
+frame5 <- distinct(frame,trial)
+frame6 <- sample_frac(frame,0.5)
+frame7 <- sample_n(frame,500)
+frame8 <- frame %>% filter(trial==1) %>% mutate(suma=trial+trial)
