@@ -1,0 +1,231 @@
+#Create a subset of the built-in data set iris, setosa.data, containing 
+#the data for the species setosa, where the sepal length is less than the 
+#median for all data. The result should not contain a column with the 
+#species name.
+names(iris)
+levels(iris$Species)
+head(iris)
+set <- median(iris$Sepal.Length)
+setosa.data <- subset(iris,Species=="setosa"&Sepal.Length<median(iris$Sepal.Length),select = -Species)
+summary(setosa.data)
+txt <- c("Hola, mi","nombre es","Mauricio")
+grep("nombre",txt)
+grepl("nombre",txt)
+sub("Mauricio","Ariel",txt)
+df
+def <- data.frame(person.ID=c(1,2,3),fruit=c("apple: 3 Orange:9 banana:2","Orange:1 Apple:3 banana:10","banana:3 Apple:3 Orange:04"))
+pat <- 
+as.numeric(sub(pat,"\\1",def$fruit,ignore.case = T))
+sum(as.numeric(sub(".*orange[ :]*([0-9]*).*","\\1",def$fruit,ignore.case = T)))
+
+my.text<-"Over the last decade, bluetongue virus have spread northwards from the mediterranean area. Initially this was ascribed to climate changes, but it has since been realized that a major contributing factor has been new transmitting vectors, culicoides obsoletus and culicoides pulicaris, which have the ability to aquire and transmit the disease. Recently, schmallenberg virus has emerged in northern europe, transmitted by biting midges as well."
+my.text
+low <- c("bluetongue","culicoides","europe","mediterranean","northern","schmallenberg")
+upp <- c("Bluetongue","Culicoides","Europe","Mediterranean","Northern","Schmallenberg")
+new <- my.text
+for (x in 1:length(low)) {
+new <- gsub(low[x],upp[x],new)  
+}
+new
+set.seed(885)
+my.pos <- as.POSIXct(sample((60*60*24*365*50):(60*60*24*365*55),20),origin=as.Date("1960-01-01"))
+my.pos
+2*60*60+30*60+10
+new <- my.pos+9010
+head(data.frame(my.pos,new),3)
+dat1 <- data.frame(name=c("cat","vic","osc"),age=c(9,7,4))
+dat2 <- data.frame(name=c("vic","jon","cat"),gender=c("male","male","female"))
+merge(dat1,dat2,all = T)
+dat1
+dat2
+set.seed(449)
+dates <- as.Date(sample(18000:20000,20),origin="1960-01-01")
+dates
+your.days<-c(julian(dates))
+head(your.days)
+your.days<-c(julian(dates,origin=as.Date("1960-01-01")))
+head(your.days)
+your.days[3]
+old.locale <- Sys.getlocale("LC_TIME")
+Sys.setlocale("LC_TIME","English")
+Sys.setlocale("LC_TIME",old.locale)
+weekdays(dates)
+library(chron)
+set.seed(119)
+my.days.structure<-month.day.year(my.days,origin=c(1,1,1960))
+my.days.structure
+my.dates <- as.Date(my.days,origin="1960-01-01")
+my.date.info<-c(Weekday=weekdays(my.dates),my.days.structure)
+my.date.info2<-data.frame(Weekday=weekdays(my.dates),my.days.structure)
+my.date.info
+my.date.info2
+tail(my.date.info2)
+head(iris)
+tapply(iris$Sepal.Length,iris$Species,mean)
+aggregate(Sepal.Length~Species,data = iris,mean)
+by(iris$Sepal.Length,iris$Species,mean)
+cycle(presidents)
+tapply(presidents, presidents$Qtr1, mean)
+pres <- presidents
+cycle(pres)
+tapply(pres,cycle(pres),mean,na.rm=T)
+x <- rnorm(1000000)
+y <- sample(1:1000,1000000,replace = T)
+groups <- paste("group",1:1000)
+my.data <- data.frame(data=rnorm(1000000),group=sample(groups,1000000,replace = T))
+my.data
+dat
+searchpaths()
+?cut
+summary(airquality$Wind)
+my.cut <- cut(airquality$Wind,c(1,3,5,7,9,11,13,15,17,19,21))
+tapply(airquality$Solar.R, my.cut, mean,na.rm=T)
+my.cut
+airquality$Wind
+my.table <- with(airquality,table(OzHi=Ozone>80,Month))
+my.table
+airquality$Ozone
+table(airquality$Ozone>80,airquality$Month)
+with(airquality,table(Ozone>80,Month))
+addmargins(my.table,1:2)
+addmargins(my.table,2)
+round(prop.table(my.table,2)*100)
+df <- as.data.frame(UCBAdmissions)
+head(df)
+names(df)
+my <- xtabs(Freq~Gender+Admit+Dept,data = df)
+my2 <- with(df,xtabs(Freq~Gender+Admit+Dept))
+str(my2)           
+ftable(my2)
+ftable(my)
+margin.table(my,1:3)
+summary(my)
+prop.table(margin.table(my,c(1,3)),1)
+prop.table(DepA,1)
+depA <- my[,,1]
+depA
+summary(swiss)
+cutAg <- cut(swiss$Agriculture,10*(0:10))
+cutCa <- cut(swiss$Catholic,10*(0:10))
+tapply(swiss$Fertility,list(cutAg,cutCa),mean)
+colMeans(airquality)
+tapply(airquality, mean)
+lapply(airquality, mean)
+?sapply
+sapply(airquality, mean)
+vapply(airquality, mean)
+str(chickwts)
+tapply(chickwts$weight, chickwts$feed, mean)
+aggregate(weight~feed, data=chickwts, mean)
+by(chickwts$weight, chickwts$feed, mean)
+sapply(chickwts, mean)
+head(airquality)
+with(airquality, table(Month, Temp < 65))
+tapply(airquality$Month, airquality$Temp < 65)
+table(LowTemp = airquality$Temp < 65, airquality$Month)
+sapply(airquality, airquality$Temp < 65)
+sapply(airquality,mean)
+prop.table(with(airquality, table(Month, Temp > 80)),1)
+prop.table(with(airquality, table(Temp > 80, Month)),2)
+lapply(airquality,mean)
+sapply(airquality, mean)
+as.list(sapply(airquality, mean))
+unlist(sapply(airquality, mean))
+is.list(sapply(airquality, mean))
+my.data<-data.frame(Treatment=c(rep("A",4),rep("B",4)),
+                    Stone=rep(rep(c("Small","Large"),c(2,2)),2),
+                    Success=rep(c(1,0),4),
+                    Count=c(81,6,192,71,234,36,55,25))
+my.data
+#xtabs, prop.table
+my <- xtabs(Count~Treatment+Success+Stone,data = my.data)
+prop.table(my,1)
+margin.table(prop.table(my,1:2),2)
+my
+str(my)
+prop.table(my[,,1],1)
+prop.table(my[,,1],2)
+prop.table(my[1,,],2)
+prop.table(my[2,,],2)
+
+prop.table(margin.table(my, 1:3),1)
+prop.table(margin.table(my, c(3,1)),1)
+prop.table(margin.table(my, 3:1),2)
+prop.table(margin.table(my, c(1,3)),2)
+margin.table(my,c(3,1))
+margin.table(my,c(1,3))
+margin.table(my,1:3)
+str(my)
+set.seed(123)
+rnorm(3)
+set.seed(456)
+rnorm(3)
+runif(5,min = 2,max = 5)
+rnorm(5,mean = 6,sd=6)
+rgamma(5,shape = 2,scale = 2)
+rbinom(5,size = 100,prob = .7)
+rmultinom(5,size = 100,prob = c(.7,.5,.3))
+par(mfrow=c(3,3))
+set.seed(779)
+for (x in 1:9) {
+hist(rnorm(25000),probability = T,main = paste("Histogram",x))  
+curve(dnorm,add = T,col="orange",lwd=5)
+  }
+par(mfrow=c(1,1))
+x <- rnorm(1000)
+plot(density(x),xlim=c(-8,8))
+y <- rnorm(1000,mean = 8)
+lines(density(y),col="orange")
+lines(density(rnorm(10000,sd=2)),col="blue")
+my.ozone <- airquality$Ozone[!is.na(airquality$Ozone)&airquality$Ozone>1]
+mean.1 <- mean(my.ozone)
+sd.1 <- sd(my.ozone)
+nor <- rnorm(115,mean.1,sd.1)
+par(mfrow=c(1,2))
+set.seed(123)
+hist(my.ozone,probability = T,main = "My Ozone")  
+curve(dnorm,add = T,col="orange",lwd=5)
+lines(density(nor),col="red",lwd=5)
+mean.3 <- log(mean.1)
+mean.2 <- mean(log(my.ozone))
+rm(mean.3)
+sd.2 <- sd(log(my.ozone))
+hist(my.ozone,probability = T,main = "My Ozone")  
+curve(dnorm,add = T,col="orange",lwd=5)
+nor2 <- rnorm(115,mean.2,sd.2)
+lines(density(nor2),col="red",lwd=5)
+set.seed(55789)
+simulated.1 <- rnorm(115,mean.1,sd.1)
+qqplot(simulated.1,my.ozone)
+lines(0:200,0:200,type ="l",col="red")
+set.seed(8942)
+simulated.2 <- rnorm(115,mean.2,sd.2)
+qqplot(exp(simulated.2),my.ozone)
+lines(0:200,0:200,type = "l",lwd=3,col="red")
+doone <- function(){
+  x <- sum(sample(1:6,2,replace = T))
+  y <- sum(sample(1:6,x,replace = T))
+  y
+}
+set.seed(123)
+y.values <- replicate(1000,doone())
+hist(y.values)
+n<-1000
+doone <- function(){ 
+  x<-rbinom(1,50,1/6) 
+  p<-x/50 
+  p 
+} 
+p.sim<-replicate(n,doone())
+hist(p.sim)
+n<-1000
+doone <- function(){ 
+  x<-rbinom(1,50,1/6) 
+  p<-x/50 
+  p 
+} 
+p.sim<-replicate(n,doone()) 
+hist(p.sim,breaks=20)
+x <- rnorm(1000, mean=5)
+y <- rnorm(1000, mean=5, sd=2)
+lines(density(x),col="green",lwd=5)
